@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64">
+  <rect x="2" y="6" width="52" height="52" rx="14" fill="#2457d6"/>
+  <circle cx="20" cy="32" r="7" fill="#ffffff"/>
+  <circle cx="36" cy="32" r="7" fill="#ffffff" fill-opacity="0.6"/>
+  <text x="68" y="44" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#141820">demo mark</text>
+</svg>

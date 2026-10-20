@@ -1,0 +1,11 @@
+# Leak gate allowlist. One entry per line: <path>:<exact substring>
+# A finding is dropped when its path matches and the offending line contains the substring.
+# Lines starting with # are comments. Paths are relative to the repo root, as git prints them.
+tools/leak_gate.py:PATHS = [
+LICENSE:Copyright (c) 2026 RevTech
+README.md:Made by RevTech.
+.claude-plugin/marketplace.json:"name": "RevTech"
+plugins/site-video/.claude-plugin/plugin.json:"name": "RevTech"
+tools/leak-allow.txt:RevTech
+README.md:revtech-hq/site-video
+tools/leak-allow.txt:revtech-hq

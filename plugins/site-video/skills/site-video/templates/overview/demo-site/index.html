@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo page for the overview template</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif; color: #141820; background: #ffffff; }
+  nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; display: flex; align-items: center; justify-content: space-between;
+        padding: 0 48px; background: rgba(255, 255, 255, 0.92); border-bottom: 1px solid #e3e6ec; z-index: 10; }
+  nav .brand { font-weight: 700; font-size: 18px; }
+  nav .links { display: flex; gap: 32px; font-size: 15px; color: #4a5263; }
+  .hero { min-height: 1050px; background: #e3eeff; display: flex; flex-direction: column; align-items: center; padding-top: 300px; text-align: center; }
+  .hero img { display: block; width: 280px; height: 64px; margin-bottom: 56px; }
+  .hero h1 { font-size: 64px; line-height: 1.08; letter-spacing: -0.02em; max-width: 900px; }
+  .hero p { margin-top: 28px; font-size: 22px; color: #4a5263; max-width: 640px; line-height: 1.45; }
+  .hero .actions { margin-top: 40px; display: flex; gap: 16px; }
+  .btn { padding: 16px 28px; border-radius: 10px; font-size: 18px; font-weight: 600; background: #2457d6; color: #fff; }
+  .btn.ghost { background: transparent; color: #2457d6; border: 2px solid #2457d6; }
+  section { padding: 120px 120px; }
+  section h2 { font-size: 44px; letter-spacing: -0.01em; margin-bottom: 16px; }
+  section .lead { font-size: 20px; color: #4a5263; margin-bottom: 56px; max-width: 760px; line-height: 1.45; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .stat { background: #f4f7fc; border-radius: 18px; padding: 48px 40px; }
+  .stat b { display: block; font-size: 88px; letter-spacing: -0.03em; color: #2457d6; }
+  .stat span { display: block; margin-top: 8px; font-size: 20px; color: #4a5263; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; }
+  .card { border: 1px solid #e3e6ec; border-radius: 18px; padding: 40px; min-height: 380px; background: #fff; }
+  .card .chip { display: inline-block; font-size: 14px; font-weight: 600; color: #2457d6; background: #e3eeff; border-radius: 8px; padding: 6px 12px; }
+  .card h3 { margin-top: 28px; font-size: 30px; }
+  .card p { margin-top: 14px; font-size: 18px; color: #4a5263; line-height: 1.5; }
+  .tabs { display: flex; gap: 12px; margin-bottom: 32px; }
+  .tab { font: inherit; font-size: 18px; font-weight: 600; padding: 14px 24px; border-radius: 10px; border: 2px solid #d5dbe6; background: #fff; color: #4a5263; cursor: pointer; }
+  .tab[aria-selected="true"] { border-color: #2457d6; color: #fff; background: #2457d6; }
+  .panel { border-radius: 18px; background: #f4f7fc; padding: 56px; font-size: 26px; line-height: 1.4; min-height: 260px; }
+  .panel[hidden] { display: none; }
+  .closing { background: #ffffff; text-align: center; padding: 200px 120px 400px; }
+  .closing h2 { font-size: 52px; line-height: 1.2; max-width: 900px; margin: 0 auto; }
+  footer { padding: 48px 120px; border-top: 1px solid #e3e6ec; color: #4a5263; font-size: 15px; }
+  /* air around each subject the camera frames: a held crop's edges fall on empty page, never through a line of text */
+  #numbers { padding-bottom: 300px; text-align: center; }
+  #numbers .lead { margin: 0 auto 300px; }
+  #numbers .stats { max-width: 840px; margin: 0 auto; gap: 30px; }
+  #cards .lead { margin-bottom: 220px; }
+  #cards { padding-bottom: 260px; }
+  #tabs .lead { margin-bottom: 120px; }
+  #tabs { padding-bottom: 260px; }
+  #tabs .panel { max-width: 820px; }
+</style>
+</head>
+<body>
+<nav><div class="brand">demo mark</div><div class="links"><span>Numbers</span><span>Cards</span><span>Tabs</span></div></nav>
+<header class="hero">
+  <img src="mark.svg" alt="Demo mark">
+  <h1>An overview film, made from a real page</h1>
+  <p>This page is a demo for the site-video overview template. Every block on it is a stub.</p>
+  <div class="actions"><span class="btn">A first button</span><span class="btn ghost">A second button</span></div>
+</header>
+<section id="numbers">
+  <h2>Sample numbers</h2>
+  <p class="lead">Three cards with large figures, the kind of section a film dives into and holds.</p>
+  <div class="stats">
+    <div class="stat"><b>128</b><span>sample items</span></div>
+    <div class="stat"><b>42</b><span>sample places</span></div>
+    <div class="stat"><b>7</b><span>sample days</span></div>
+  </div>
+</section>
+<section id="cards" style="background:#fbfcfe">
+  <h2>A row of three cards</h2>
+  <p class="lead">A row the camera glides across, from the first card to the last.</p>
+  <div class="cards">
+    <div class="card"><span class="chip">One</span><h3>The first card</h3><p>Stub text for the first card, two short lines long.</p></div>
+    <div class="card"><span class="chip">Two</span><h3>The second card</h3><p>Stub text for the second card, two short lines long.</p></div>
+    <div class="card"><span class="chip">Three</span><h3>The third card</h3><p>Stub text for the third card, two short lines long.</p></div>
+  </div>
+</section>
+<section id="tabs">
+  <h2>Tabs that change on a click</h2>
+  <p class="lead">The film clicks the second tab, and the page answers with its own change.</p>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="p1">First tab</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p2">Second tab</button>
+  </div>
+  <div class="panel" id="p1">The first tab's panel: what a visitor sees before the click.</div>
+  <div class="panel" id="p2" hidden>The second tab's panel: the page's own answer to the click.</div>
+</section>
+<section class="closing" id="closing">
+  <h2>This is the sentence the film highlights before it ends.</h2>
+</section>
+<footer>Demo page for the site-video overview template. Nothing here is real.</footer>
+<script>
+  for (const t of document.querySelectorAll('.tab')) t.addEventListener('click', () => {
+    for (const u of document.querySelectorAll('.tab')) u.setAttribute('aria-selected', String(u === t));
+    for (const p of document.querySelectorAll('.panel')) p.hidden = p.id !== t.dataset.p;
+  });
+</script>
+</body>
+</html>

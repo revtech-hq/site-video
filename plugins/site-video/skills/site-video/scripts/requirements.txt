@@ -1,0 +1,6 @@
+# Exact pins on purpose: frame-identical renders depend on the exact Pillow, and the capture depends on the exact Playwright.
+Pillow==11.3.0
+playwright==1.58.0
+greenlet==3.2.4
+pyee==13.0.0
+typing_extensions==4.15.0

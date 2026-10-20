@@ -1,0 +1,523 @@
+{
+  "name": "demo-overview",
+  "title": "Demo overview",
+  "fps": 60,
+  "duration": 31.5,
+  "cap_end": 25.8,
+  "viewport": [
+    1440,
+    1100
+  ],
+  "raw_dir": "raw",
+  "chrome_dir": "chrome",
+  "site": "demo",
+  "nav_h": 64,
+  "frame": {
+    "W": 1080,
+    "H": 1080,
+    "win": [
+      60,
+      266,
+      960,
+      754
+    ],
+    "badge_dock": [
+      540,
+      110,
+      360
+    ],
+    "badge_end": [
+      540,
+      482,
+      680
+    ],
+    "line_end": [
+      540,
+      616,
+      537
+    ]
+  },
+  "browser": {
+    "head": 46,
+    "url": "example.com/overview"
+  },
+  "badge_page": [
+    580,
+    300,
+    280,
+    64
+  ],
+  "open": {
+    "square": [
+      720,
+      545,
+      960,
+      946
+    ],
+    "hero_bottom": 1050,
+    "push": [
+      0.0,
+      1.75
+    ],
+    "t_show": 1.45,
+    "hide_at": 1.45,
+    "mark_selector": "img[alt=\"Demo mark\"]",
+    "t_lift": [
+      1.45,
+      1.8
+    ],
+    "lift_scale": 1.25,
+    "lift_rise": 24,
+    "t_step": [
+      1.75,
+      2.75
+    ],
+    "t_dock": [
+      1.8,
+      2.8
+    ]
+  },
+  "scroll": [
+    [
+      3.5,
+      5.0,
+      0,
+      1050,
+      0.35,
+      0.9
+    ],
+    [
+      8.1,
+      9.6,
+      1050,
+      2098,
+      0.5,
+      0.8
+    ],
+    [
+      14.7,
+      16.1,
+      2098,
+      3140,
+      0.5,
+      0.8
+    ],
+    [
+      20.6,
+      22.0,
+      3140,
+      3857,
+      0.4,
+      0.9
+    ]
+  ],
+  "camera": {
+    "padx": 0,
+    "keys": [
+      [
+        2.75,
+        1.115619,
+        720,
+        557,
+        null
+      ],
+      [
+        3.5,
+        1.1268,
+        720,
+        557,
+        "lin"
+      ],
+      [
+        5.0,
+        1.0,
+        720,
+        550,
+        "soft"
+      ],
+      [
+        5.7,
+        1.01,
+        720,
+        544.55,
+        "lin"
+      ],
+      [
+        6.5,
+        1.4899,
+        720,
+        632.5,
+        "soft"
+      ],
+      [
+        7.6,
+        1.5048,
+        720,
+        632.5,
+        "lin"
+      ],
+      [
+        8.4,
+        1.0,
+        720,
+        550,
+        "soft"
+      ],
+      [
+        9.6,
+        1.0,
+        720,
+        550,
+        "lin"
+      ],
+      [
+        10.3,
+        1.01,
+        720,
+        544.55,
+        "lin"
+      ],
+      [
+        11.2,
+        1.6323,
+        509.0,
+        627.0,
+        "soft"
+      ],
+      [
+        12.0,
+        1.6486,
+        509.0,
+        627.0,
+        "lin"
+      ],
+      [
+        13.4,
+        1.6486,
+        930.5,
+        627.0,
+        "soft"
+      ],
+      [
+        14.2,
+        1.6649,
+        930.5,
+        627.0,
+        "lin"
+      ],
+      [
+        15.0,
+        1.0,
+        720,
+        550,
+        "soft"
+      ],
+      [
+        16.1,
+        1.0,
+        720,
+        550,
+        "lin"
+      ],
+      [
+        16.5,
+        1.0,
+        720,
+        550,
+        "lin"
+      ],
+      [
+        17.4,
+        1.5223,
+        530.0,
+        436.0,
+        "soft"
+      ],
+      [
+        20.1,
+        1.5451,
+        530.0,
+        436.0,
+        "lin"
+      ],
+      [
+        20.9,
+        1.0,
+        720,
+        550,
+        "soft"
+      ],
+      [
+        22.0,
+        1.0,
+        720,
+        550,
+        "lin"
+      ],
+      [
+        22.4,
+        1.0,
+        720,
+        550,
+        "lin"
+      ],
+      [
+        23.4,
+        1.4,
+        720.0,
+        527.0,
+        "soft"
+      ],
+      [
+        25.8,
+        1.414,
+        720.0,
+        527.0,
+        "lin"
+      ]
+    ],
+    "_derived": {
+      "how": "zoom = min(VH / (h + 2m), VH x 960 / 754 / (w + 2m)) for the subject box (document px) and margin m; centre = the box centre, its y minus the stop's scroll; every hold pushes 1 to 1.5% on lin; a hold at zoom 1 keeps the crop's top on the viewport's top (cy = VH / 2 / zoom), so the nav shows whole",
+      "2.75 the hero in its window": "the step back's last framing: zoom VH / (hero_bottom - nav_h), cy = nav_h + (hero_bottom - nav_h) / 2",
+      "6.5 the three numbers": {
+        "box": [
+          300,
+          1567,
+          1140,
+          1798
+        ],
+        "margin": 50,
+        "scroll": 1050
+      },
+      "11.2 the first two cards": {
+        "box": [
+          120,
+          2535,
+          898,
+          2915
+        ],
+        "margin": 40,
+        "scroll": 2098
+      },
+      "13.4 the last two cards": {
+        "box": [
+          541,
+          2535,
+          1320,
+          2915
+        ],
+        "margin": 40,
+        "scroll": 2098
+      },
+      "17.4 the tabs and the panel": {
+        "box": [
+          120,
+          3295,
+          940,
+          3857
+        ],
+        "margin": 50,
+        "scroll": 3140,
+        "note": "the stop leaves the crop's top clear of the nav"
+      },
+      "23.4 the closing line": {
+        "box": [
+          274,
+          4329,
+          1166,
+          4439
+        ],
+        "zoom": 1.4,
+        "scroll": 3857
+      }
+    }
+  },
+  "cursors": [
+    {
+      "p0": [
+        840,
+        690
+      ],
+      "pc": [
+        580,
+        520
+      ],
+      "p1": [
+        326,
+        398
+      ],
+      "span": [
+        17.6,
+        18.2
+      ],
+      "clicks": [
+        18.3
+      ],
+      "lead": 0.15,
+      "hide": [
+        19.4,
+        19.6
+      ],
+      "release": 18.8
+    }
+  ],
+  "cursor_style": {
+    "fade_in": 0.2,
+    "press_len": 0.16,
+    "press_depth": 0.14,
+    "ring_len": 0.4
+  },
+  "mouse_rest": [
+    1436,
+    560
+  ],
+  "end": {
+    "t_fade": [
+      25.0,
+      25.8
+    ],
+    "shrink": 0.0,
+    "t_badge": [
+      27.3,
+      28.2
+    ],
+    "t_line": [
+      27.3,
+      28.2
+    ],
+    "sentence": {
+      "t_hold": 24.9,
+      "box": [
+        266,
+        469,
+        1174,
+        585
+      ],
+      "pad": [
+        26,
+        12
+      ],
+      "feather": 9,
+      "t_move": [
+        25.2,
+        26.0
+      ],
+      "t_out": [
+        27.0,
+        28.0
+      ],
+      "hide": true,
+      "white_lift": 3
+    },
+    "cursor": {
+      "p0": [
+        820,
+        950
+      ],
+      "pc": [
+        740,
+        790
+      ],
+      "p1": [
+        600,
+        628
+      ],
+      "span": [
+        28.5,
+        29.0
+      ],
+      "click": 29.15,
+      "size": 46,
+      "shadow": {
+        "dx": 5,
+        "dy": 11,
+        "blur": 7,
+        "alpha": 0.34
+      },
+      "dip": 0.03
+    }
+  },
+  "capture": {
+    "viewport": [
+      1440,
+      1100
+    ],
+    "device_scale": 2,
+    "reduced_motion": "no-preference",
+    "fps": 60,
+    "block": [],
+    "count_block": [],
+    "pre": [
+      {
+        "goto": "demo-site/index.html",
+        "wait_until": "load",
+        "settle_ms": 500
+      }
+    ],
+    "warmup": {
+      "to": 3900,
+      "step": 600,
+      "wait_ms": 100,
+      "settle_ms": 500
+    },
+    "rate0": 0.12,
+    "frame_clock": true,
+    "after_nav_mouse": [
+      1436,
+      560
+    ]
+  },
+  "chrome": {
+    "mark_selector": "img[alt=\"Demo mark\"]",
+    "font_selector": "h1",
+    "line": "example.com/overview"
+  },
+  "recon": {
+    "items": {
+      "mark": "img[alt=\"Demo mark\"]",
+      "h1": ".hero h1",
+      "numbers_h2": "#numbers h2",
+      "stats": ".stat",
+      "cards_h2": "#cards h2",
+      "cards": ".card",
+      "tabs_h2": "#tabs h2",
+      "tabs": ".tab",
+      "panel": ".panel",
+      "closing": ".closing h2",
+      "footer": "footer",
+      "numbers_lead": "#numbers .lead",
+      "cards_lead": "#cards .lead",
+      "tabs_lead": "#tabs .lead",
+      "stat_text": ".stat b, .stat span",
+      "card_text": ".card .chip, .card h3, .card p",
+      "tab_buttons": ".tab"
+    }
+  },
+  "cover_t": 3.25,
+  "highlight": {
+    "t": 23.7,
+    "sweep": 0.4,
+    "gap": 0.3,
+    "pad": [
+      8,
+      3
+    ],
+    "lines": [
+      [
+        274,
+        472,
+        1166,
+        520
+      ],
+      [
+        557,
+        534,
+        884,
+        582
+      ]
+    ]
+  },
+  "cursor_fade_in": [
+    0
+  ]
+}

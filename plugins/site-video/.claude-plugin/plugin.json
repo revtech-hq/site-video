@@ -1,0 +1,9 @@
+{
+  "name": "site-video",
+  "version": "0.1.0",
+  "description": "Films of real websites: capture a live page frame by frame, choreograph the camera, render with checked motion and framing, and deliver a platform-ready MP4 with an independent review.",
+  "author": {
+    "name": "RevTech"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.DS_Store
+# film outputs and captures never go in the repo
+*.mp4
+raw/
+raw-*/
+out/

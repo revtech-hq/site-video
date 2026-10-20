@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "site-video",
+  "description": "Films of real websites, made in Claude Code: one plugin, site-video.",
+  "owner": {
+    "name": "RevTech"
+  },
+  "plugins": [
+    {
+      "name": "site-video",
+      "description": "Films of real websites, made in Claude Code: the choreography agreed first, then a quick rough cut, then a checked, platform-ready MP4.",
+      "source": "./plugins/site-video",
+      "category": "productivity"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fixture tween</title>
+<style>
+  * { margin: 0; }
+  body { background: #fff; }
+  button { position: absolute; left: 20px; top: 20px; width: 120px; height: 40px; }
+  .box { position: absolute; left: 0; top: 120px; width: 60px; height: 60px; background: #3366cc; }
+</style>
+</head>
+<body>
+<button id="go">Go</button>
+<div class="box" id="box"></div>
+<script>
+  // the common hand-written tween: starts at performance.now(), steps by the rAF timestamp
+  var box = document.getElementById('box');
+  document.getElementById('go').addEventListener('click', function () {
+    var t0 = performance.now();
+    function frame(now) {
+      var t = Math.min((now - t0) / 400, 1), e = 1 - Math.pow(1 - t, 3);
+      box.style.transform = 'translateX(' + (300 * e) + 'px)';
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
+</script>
+</body>
+</html>

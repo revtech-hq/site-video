@@ -1,0 +1,27 @@
+{
+  "name": "fixture",
+  "title": "Fixture film",
+  "fps": 30,
+  "cap_end": 4.0,
+  "viewport": [480, 640],
+  "window": [480, 640],
+  "sites": ["one", "two"],
+  "nav_t": 3.0,
+  "scroll": {"distance": 900, "t0": 0.4, "ramp": 0.3, "decel": 0.8, "t_end": 1.9},
+  "camera": {"padx": 0, "keys": [[0.0, 1.0, 240, 320, null], [4.0, 1.0, 240, 320, "lin"]]},
+  "capture": {
+    "viewport": [480, 640],
+    "device_scale": 2,
+    "reduced_motion": "no-preference",
+    "fps": 30,
+    "block": ["analytics\\.example"],
+    "count_block": ["/api/submit"],
+    "pre": [
+      {"goto": "page1.html", "wait_until": "load", "settle_ms": 200}
+    ],
+    "warmup": {"to": 1200, "step": 400, "wait_ms": 50, "settle_ms": 200},
+    "rate0": 0.5,
+    "click": {"x": 130, "y": 370, "url_pattern": "page2\\.html$", "timeout": 15000},
+    "after_nav_mouse": [5, 5]
+  }
+}

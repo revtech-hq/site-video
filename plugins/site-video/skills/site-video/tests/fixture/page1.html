@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixture page one</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: Helvetica, Arial, sans-serif; background: #fff; color: #222; }
+  section { height: 400px; padding: 40px; border-bottom: 2px solid #ddd; }
+  section:nth-child(odd) { background: #f3f3f3; }
+  h2 { font-size: 32px; margin-bottom: 16px; }
+  p { font-size: 18px; line-height: 1.5; max-width: 360px; }
+  .pulse { width: 80px; height: 80px; margin-top: 24px; background: #3366cc; border-radius: 12px;
+           animation: slide 1.5s ease-in-out infinite alternate; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(300px); } }
+  a.next { display: inline-block; margin-top: 24px; padding: 14px 22px; background: #222; color: #fff; text-decoration: none;
+           font-size: 20px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<section><h2>One</h2><p>The first section of a tall page, with an animation that never stops.</p><div class="pulse"></div></section>
+<section><h2>Two</h2><p>The second section. Nothing happens here.</p></section>
+<section style="height:300px"><h2>Three</h2><p>The third section.</p></section>
+<section id="go"><h2>Four</h2><p>The link to the second page.</p><a class="next" href="page2.html">Go to page two</a></section>
+<section><h2>Five</h2><p>The last section.</p></section>
+</body>
+</html>

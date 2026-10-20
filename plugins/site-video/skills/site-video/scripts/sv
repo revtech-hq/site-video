@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+# sv: the single launcher for the site-video skill. Run `sv` with no arguments for usage.
+SRC="${BASH_SOURCE[0]}"
+while [ -L "$SRC" ]; do
+  D="$(cd -P "$(dirname "$SRC")" && pwd)"
+  SRC="$(readlink "$SRC")"
+  case "$SRC" in /*) ;; *) SRC="$D/$SRC" ;; esac
+done
+HERE="$(cd -P "$(dirname "$SRC")" && pwd)"
+SV="$HERE/$(basename "$SRC")"
+SKILL_DIR="$(cd "$HERE/.." && pwd)"
+SITE_VIDEO_HOME="${SITE_VIDEO_HOME:-$HOME/.site-video}"
+export SITE_VIDEO_HOME
+VENV_PY="$SITE_VIDEO_HOME/venv/bin/python"
+
+usage() {
+  cat <<USAGE
+usage: sv <verb> [args]
+  setup [--force]                       create the environment (once per machine)
+  doctor                                check the machine and the environment
+  check <args...>                       run film_check.py
+  film <film dir> <command> [args...]   run <film dir>/film.py
+  new <film dir> [--template NAME]      start a film from a template (default: overview)
+  test [name...]                        run the skill's tests
+  python <args...>                      the environment's python
+  version                               plugin, Pillow and playwright versions
+USAGE
+}
+
+# The system python for setup and doctor: the first one within 3.9 to 3.13.
+system_python() {
+  local c
+  for c in "${SITE_VIDEO_PYTHON:-}" python3.12 python3.13 python3.11 python3.10 python3.9 /usr/bin/python3 python3; do
+    [ -n "$c" ] || continue
+    command -v "$c" >/dev/null 2>&1 || continue
+    if "$c" -c 'import sys; sys.exit(0 if (3,9) <= sys.version_info[:2] <= (3,13) else 1)' 2>/dev/null; then
+      command -v "$c"; return 0
+    fi
+  done
+  /usr/bin/env python3 -c 'pass' >/dev/null 2>&1 && { command -v python3; return 0; }
+  return 1
+}
+
+need_env() {
+  if [ ! -x "$VENV_PY" ]; then
+    echo "site-video is not set up yet. Run: $SV setup"
+    exit 2
+  fi
+  export PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}"
+  export FILMKIT="$HERE"
+}
+
+verb="${1:-}"
+[ $# -gt 0 ] && shift
+case "$verb" in
+  setup)
+    PY="$(system_python)" || { echo "no python3 found. Install Python 3.12 (e.g. brew install python@3.12)."; exit 1; }
+    exec "$PY" "$HERE/setup.py" "$@" ;;
+  doctor)
+    PY="$(system_python)" || { echo "no python3 found. Install Python 3.12 (e.g. brew install python@3.12)."; exit 1; }
+    exec "$PY" "$HERE/doctor.py" "$@" ;;
+  check)
+    need_env
+    exec "$VENV_PY" "$HERE/film_check.py" "$@" ;;
+  film)
+    need_env
+    if [ $# -lt 2 ]; then echo "usage: sv film <film dir> <command> [args...]"; exit 2; fi
+    dir="$1"; shift
+    if [ ! -f "$dir/film.py" ]; then echo "no film.py in: $dir"; exit 2; fi
+    exec "$VENV_PY" "$dir/film.py" "$@" ;;
+  new)
+    template="overview"; dir=""
+    while [ $# -gt 0 ]; do
+      case "$1" in
+        --template) template="${2:-}"; shift 2 || { echo "--template needs a name"; exit 2; } ;;
+        *) if [ -z "$dir" ]; then dir="$1"; shift; else echo "unexpected argument: $1"; exit 2; fi ;;
+      esac
+    done
+    [ -n "$dir" ] || { echo "usage: sv new <film dir> [--template NAME]"; exit 2; }
+    TPL="$SKILL_DIR/templates/$template"
+    [ -d "$TPL" ] || { echo "template not found: $template (looked in $SKILL_DIR/templates)"; exit 2; }
+    if [ -e "$dir/film.py" ]; then echo "refusing: $dir/film.py already exists. Pick a new folder."; exit 2; fi
+    clash=""
+    while IFS= read -r -d '' f; do
+      rel="${f#$TPL/}"
+      [ -e "$dir/$rel" ] && clash="$clash $rel"
+    done < <(find "$TPL" -type f -print0)
+    if [ -n "$clash" ]; then echo "refusing: would overwrite:$clash"; exit 2; fi
+    mkdir -p "$dir" || exit 1
+    dir="$(cd "$dir" && pwd)" || exit 1   # absolute: the copy below runs from inside the template
+    (cd "$TPL" && find . -type f -not -path '*/__pycache__/*' -print0 | while IFS= read -r -d '' f; do
+      mkdir -p "$dir/$(dirname "$f")" && cp -p "$f" "$dir/$f"
+    done) || exit 1
+    echo "new film from template $template in: $dir" ;;
+  test)
+    need_env
+    cd "$SKILL_DIR" || exit 1
+    files=()
+    if [ $# -eq 0 ]; then
+      for f in tests/test_*.py; do files+=("$f"); done
+    else
+      for n in "$@"; do
+        n="${n%.py}"; n="${n#test_}"
+        [ -f "tests/test_$n.py" ] || { echo "no such test: $n"; exit 2; }
+        files+=("tests/test_$n.py")
+      done
+    fi
+    files+=("tests/fixture/run.py")
+    pass=0; fail=0
+    for f in "${files[@]}"; do
+      log="$(mktemp)"
+      if "$VENV_PY" "$f" >"$log" 2>&1; then
+        echo "PASS $f"; pass=$((pass+1))
+      else
+        echo "FAIL $f"; fail=$((fail+1)); tail -n 15 "$log" | sed 's/^/  /'
+      fi
+      rm -f "$log"
+    done
+    echo "tests: $pass passed, $fail failed"
+    [ "$fail" -eq 0 ] ;;
+  python)
+    need_env
+    exec "$VENV_PY" "$@" ;;
+  version)
+    ver="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$SKILL_DIR/../../.claude-plugin/plugin.json" | head -1)"
+    echo "site-video $ver"
+    need_env
+    "$VENV_PY" -c 'import PIL, playwright; from importlib.metadata import version; print("Pillow", PIL.__version__); print("playwright", version("playwright"))' ;;
+  *)
+    usage; exit 2 ;;
+esac

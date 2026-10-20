@@ -1,0 +1,10 @@
+{
+  "_source": "the demo page's own values (demo-site/index.html): its hero ground, its blue, its ink",
+  "ground": [227, 238, 255],
+  "accent": [36, 87, 214],
+  "ink": [20, 24, 32],
+  "white": [255, 255, 255],
+  "window": {"radius": 18, "line_alpha": 0.12, "shadow": {"dy": 12, "blur": 18, "colour": [20, 24, 32], "alpha": 0.10}},
+  "lift_shadow": {"dy": 14, "blur": 16, "colour": [30, 40, 70], "alpha": 0.28},
+  "ring": {"colour": [36, 87, 214], "width": 7}
+}

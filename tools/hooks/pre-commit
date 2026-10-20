@@ -1,0 +1,3 @@
+#!/bin/sh
+# Blocks a commit when the staged content leaks names, personal paths, dated quotes or em dashes.
+exec python3 "$(git rev-parse --show-toplevel)/tools/leak_gate.py" --staged
